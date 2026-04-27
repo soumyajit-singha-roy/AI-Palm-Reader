@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Calendar, Sparkles } from "lucide-react";
-import { AdBanner } from "./AdPlacements";
 
 interface HomeFormProps {
   onSubmit: (data: { name: string; dob: string; gender: string }) => void;
@@ -48,7 +47,6 @@ const HomeForm: React.FC<HomeFormProps> = ({ onSubmit }) => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="w-full max-w-md mx-auto"
     >
-      <div className="mb-6"><AdBanner position="top" /></div>
       {/* Header */}
       <div className="text-center mb-8">
         <motion.div
@@ -142,8 +140,6 @@ const HomeForm: React.FC<HomeFormProps> = ({ onSubmit }) => {
           </div>
         </div>
 
-        <AdBanner position="inline" />
-
         {/* Submit */}
         <motion.button
           id="btn-submit-details"
@@ -168,7 +164,6 @@ const HomeForm: React.FC<HomeFormProps> = ({ onSubmit }) => {
           🔥 <span className="text-mystic-300/70 font-medium">12,543</span> people checked their palm today
         </p>
       </motion.div>
-      <div className="mt-8"><AdBanner position="bottom" /></div>
     </motion.div>
   );
 };

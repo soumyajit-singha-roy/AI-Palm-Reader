@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Share2, Copy, RotateCcw, CheckCircle, MessageCircle } from "lucide-react";
 import type { PalmReading, UserData } from "../utils/astrology";
-import { AdBanner } from "./AdPlacements";
 
 interface ResultSectionProps {
   reading: PalmReading;
@@ -36,11 +35,11 @@ const ResultSection: React.FC<ResultSectionProps> = ({
     localStorage.setItem('palm_share_count', newCount.toString());
   };
 
-  const shareText = `🔮 I just got my AI Palm Reading based on Indian Vedic Astrology! My Rashi is ${reading.rashi} and my ruling planet is ${reading.rulingPlanet}. Try it free: ${window.location.href}`;
+  const shareText = `🔮 I just got my AI Palm Reading based on Indian Vedic Astrology! My Rashi is ${reading.rashi} and my ruling planet is ${reading.rulingPlanet}. Try it free: https://palmmystiq.netlify.app/`;
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText("https://palmmystiq.netlify.app/");
       setCopied(true);
       incrementShare();
       setTimeout(() => setCopied(false), 2000);
@@ -76,7 +75,6 @@ const ResultSection: React.FC<ResultSectionProps> = ({
       animate="visible"
       className="w-full max-w-md mx-auto space-y-5 pb-24"
     >
-      <div className="mb-2"><AdBanner position="top" /></div>
       {/* Header */}
       <motion.div variants={itemVariants} className="text-center">
         <motion.div
@@ -126,10 +124,6 @@ const ResultSection: React.FC<ResultSectionProps> = ({
         </div>
       </motion.div>
 
-      {/* In-content Ad */}
-      <motion.div variants={itemVariants}>
-        <AdBanner position="inline" />
-      </motion.div>
 
       {/* Predictions */}
       {reading.predictions.map((prediction, index) => (
@@ -193,8 +187,6 @@ const ResultSection: React.FC<ResultSectionProps> = ({
           </button>
         </motion.div>
       ))}
-
-      <AdBanner position="inline" />
 
       {/* Overall Fortune */}
       <motion.div
@@ -312,8 +304,6 @@ const ResultSection: React.FC<ResultSectionProps> = ({
         </p>
       </motion.div>
 
-      <AdBanner position="inline" />
-
       {/* Share & Actions */}
       <motion.div variants={itemVariants} className="space-y-3">
         <div className="flex gap-3">
@@ -336,7 +326,7 @@ const ResultSection: React.FC<ResultSectionProps> = ({
             onClick={() => {
               incrementShare();
               if (navigator.share) {
-                navigator.share({ title: "AI Palm Reader", text: shareText, url: window.location.href });
+                navigator.share({ title: "AI Palm Reader", text: shareText, url: "https://palmmystiq.netlify.app/" });
               }
             }}
             className="py-3 px-5 rounded-xl bg-mystic-700/30 border border-mystic-500/20 text-mystic-200 flex items-center justify-center gap-2 hover:bg-mystic-700/50 transition-colors text-sm"
@@ -353,8 +343,6 @@ const ResultSection: React.FC<ResultSectionProps> = ({
           <RotateCcw size={14} /> Try Again with Different Palm
         </motion.button>
       </motion.div>
-
-      <div className="mt-8"><AdBanner position="bottom" /></div>
     </motion.div>
   );
 };

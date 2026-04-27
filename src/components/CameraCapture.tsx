@@ -2,6 +2,8 @@ import React, { useRef, useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Upload, RotateCcw, Check, X } from "lucide-react";
 
+declare const window: any;
+
 interface CameraCaptureProps {
   onCapture: (imageDataUrl: string) => void;
   onBack: () => void;

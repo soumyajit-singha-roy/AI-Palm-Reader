@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { AdBanner } from "./AdPlacements";
 
 // Use global handPoseDetection from CDN script
 declare const window: any;
@@ -220,8 +219,6 @@ const PalmCanvas: React.FC<PalmCanvasProps> = ({ imageUrl, onComplete }) => {
       transition={{ duration: 0.5 }}
       className="w-full max-w-md mx-auto"
     >
-      <div className="mb-4"><AdBanner position="top" /></div>
-      
       {/* Header */}
       <div className="text-center mb-6">
         <motion.div

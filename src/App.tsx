@@ -5,7 +5,6 @@ import CameraCapture from "./components/CameraCapture";
 import PalmCanvas from "./components/PalmCanvas";
 import AdUnlock from "./components/AdUnlock";
 import ResultSection from "./components/ResultSection";
-import { AdBanner, StickyBottomAd, PopupAd } from "./components/AdPlacements";
 import { generateReading, type UserData, type PalmReading } from "./utils/astrology";
 
 type Step = "form" | "camera" | "processing" | "adUnlock" | "result";
@@ -15,13 +14,10 @@ function App() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [palmImage, setPalmImage] = useState<string | null>(null);
   const [reading, setReading] = useState<PalmReading | null>(null);
-  const [showPopupAd, setShowPopupAd] = useState(false);
 
   const handleFormSubmit = (data: { name: string; dob: string; gender: string }) => {
     setUserData(data);
     setStep("camera");
-    // Show popup ad on transition
-    setShowPopupAd(true);
   };
 
   const handleCapture = (imageDataUrl: string) => {
@@ -55,11 +51,6 @@ function App() {
     <div className="min-h-screen relative">
       {/* Animated stars background */}
       <div className="stars" />
-
-      {/* Top banner ad */}
-      <div className="sticky top-0 z-30 p-2 bg-mystic-900/80 backdrop-blur-md">
-        <AdBanner position="top" />
-      </div>
 
       {/* Main content */}
       <main className="relative z-10 px-4 py-6 sm:py-10">
@@ -99,16 +90,6 @@ function App() {
           )}
         </AnimatePresence>
       </main>
-
-      {/* Sticky bottom ad */}
-      <StickyBottomAd />
-
-      {/* Popup ad */}
-      <PopupAd
-        isOpen={showPopupAd}
-        onClose={() => setShowPopupAd(false)}
-        onAdComplete={() => {}}
-      />
     </div>
   );
 }
