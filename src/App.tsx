@@ -3,11 +3,10 @@ import { AnimatePresence } from "framer-motion";
 import HomeForm from "./components/HomeForm";
 import CameraCapture from "./components/CameraCapture";
 import PalmCanvas from "./components/PalmCanvas";
-import AdUnlock from "./components/AdUnlock";
 import ResultSection from "./components/ResultSection";
 import { generateReading, type UserData, type PalmReading } from "./utils/astrology";
 
-type Step = "form" | "camera" | "processing" | "adUnlock" | "result";
+type Step = "form" | "camera" | "processing" | "result";
 
 function App() {
   const [step, setStep] = useState<Step>("form");
@@ -30,12 +29,10 @@ function App() {
       const result = generateReading(userData);
       setReading(result);
     }
-    setStep("adUnlock");
+    setStep("result");
   }, [userData]);
 
-  const handleUnlocked = () => {
-    setStep("result");
-  };
+
 
   const handleRetry = () => {
     setPalmImage(null);
@@ -75,9 +72,7 @@ function App() {
             />
           )}
 
-          {step === "adUnlock" && (
-            <AdUnlock key="adUnlock" onUnlocked={handleUnlocked} />
-          )}
+
 
           {step === "result" && reading && userData && palmImage && (
             <ResultSection
