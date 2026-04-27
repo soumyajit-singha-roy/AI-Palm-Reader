@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* ── Custom Theme ── */
+@theme {
+  --color-mystic-900: #0a0015;
+  --color-mystic-800: #120025;
+  --color-mystic-700: #1a0035;
+  --color-mystic-600: #2d0060;
+  --color-mystic-500: #4a0080;
+  --color-mystic-400: #7b2fbe;
+  --color-mystic-300: #a855f7;
+  --color-mystic-200: #c084fc;
+  --color-mystic-100: #e9d5ff;
+
+  --color-gold-500: #f59e0b;
+  --color-gold-400: #fbbf24;
+  --color-gold-300: #fcd34d;
+
+  --font-cinzel: "Cinzel", serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+/* ── Base Styles ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  background: linear-gradient(135deg, #0a0015 0%, #120025 30%, #1a0035 60%, #0a0015 100%);
+  color: #e9d5ff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0015;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a0080;
+  border-radius: 3px;
+}
+
+/* ── Glass Card ── */
+.glass {
+  background: rgba(26, 0, 53, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(168, 85, 247, 0.1);
+}
+
+.glass-strong {
+  background: rgba(26, 0, 53, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(168, 85, 247, 0.15);
+}
+
+/* ── Glow Effects ── */
+.glow-purple {
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.1);
+}
+
+.glow-gold {
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.3), 0 0 40px rgba(245, 158, 11, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.5), 0 0 40px rgba(245, 158, 11, 0.2);
+}
+
+/* ── Gradient Button ── */
+.btn-mystic {
+  background: linear-gradient(135deg, #7b2fbe 0%, #a855f7 50%, #7b2fbe 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+  transition: all 0.3s ease;
+}
+.btn-mystic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+}
+.btn-mystic:active {
+  transform: translateY(0);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+  color: #0a0015;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+/* ── Keyframes ── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(168, 85, 247, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.6), 0 0 50px rgba(168, 85, 247, 0.2); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* ── Stars Background ── */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.stars::before,
+.stars::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow:
+    25px 50px 0 rgba(255,255,255,0.3),
+    80px 120px 0 rgba(255,255,255,0.2),
+    150px 30px 0 rgba(255,255,255,0.4),
+    200px 180px 0 rgba(255,255,255,0.2),
+    300px 80px 0 rgba(255,255,255,0.3),
+    350px 200px 0 rgba(255,255,255,0.15),
+    400px 50px 0 rgba(255,255,255,0.25),
+    50px 250px 0 rgba(255,255,255,0.35),
+    180px 300px 0 rgba(255,255,255,0.2),
+    280px 150px 0 rgba(255,255,255,0.3),
+    100px 400px 0 rgba(255,255,255,0.15),
+    320px 350px 0 rgba(255,255,255,0.25);
+  animation: float 6s ease-in-out infinite;
+}
+.stars::after {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    60px 100px 0 rgba(255,255,255,0.2),
+    130px 200px 0 rgba(255,255,255,0.3),
+    220px 60px 0 rgba(255,255,255,0.15),
+    310px 280px 0 rgba(255,255,255,0.25),
+    370px 130px 0 rgba(255,255,255,0.2),
+    40px 350px 0 rgba(255,255,255,0.3),
+    180px 50px 0 rgba(255,255,255,0.2);
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+/* ── Ad Placeholder ── */
+.ad-placeholder {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(168, 85, 247, 0.05),
+    rgba(168, 85, 247, 0.05) 10px,
+    rgba(168, 85, 247, 0.02) 10px,
+    rgba(168, 85, 247, 0.02) 20px
+  );
+  border: 1px dashed rgba(168, 85, 247, 0.2);
+}
+
+/* ── Blur Lock ── */
+.blur-lock {
+  filter: blur(8px);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Palm line drawing animation ── */
+@keyframes draw-line {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+.palm-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 2.5s ease-in-out forwards;
+}
